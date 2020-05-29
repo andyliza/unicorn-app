@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <h1>Did a unicorn get adopted?</h1>
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
+  <p>Fill out the form to remove the unicorn from the list.</p>
+
+  <form method="POST">
+      {# This hidden_tag is a CSRF security feature. #}
+      {{ form.hidden_tag() }}
+      {{ form.id.label }} {{ form.id() }}
+      {{ form.submit() }}
+  </form>
+</div>
+{% endblock %}
